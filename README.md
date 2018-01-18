@@ -1,5 +1,5 @@
-# Numerical-Solution-of-Differential-Equation
+# Numerical Solution of Differential Equation
 
-## Sofware Manual Table of Contents
+The table of contents for this directory [Table Of Contents](./Table Of Contents.md)
 
-1. machine epsilon[]
+
