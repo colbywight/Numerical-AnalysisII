@@ -13,7 +13,7 @@
 
 **Output:** This routine returns a double precision value of the relative error in the approximation.
 
-**Usage/Example:** This routine was run on two sets of numbers to represent the concept of relative error. Once on a set of numbers close to one, one once on a set of larger numbers. A condition of relative error is that we must know the exact solution to a problem and that it must not be equal to zero. The tested code and output: 
+**Usage/Example:** This routine was run on two sets of numbers to represent the concept of relative error. Once on a set of numbers close to one, and once on a set of larger numbers. A condition of relative error is that we must know the exact solution to a problem and that it must not be equal to zero. The tested code and output: 
 
 ```C++
     cout << "Relative error in 1 and 1.1: " << relError(1, 1.1) << endl;
