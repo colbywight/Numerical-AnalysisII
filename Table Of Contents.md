@@ -4,7 +4,7 @@
 ###  I. Basic Routines
  1. [Single Machine Epsilon](https://github.com/colbywight/Numerical-Analysis/blob/master/MachineEpsilonSingle.md)
  2. [Double Machine Epsilon](https://github.com/colbywight/Numerical-Analysis/blob/master/MachineEpsilonDouble.md)
- 3. [Realative Error](/relError.md)
+ 3. [Relative Error](/relError.md)
  4. [Absolute Error](/absError.md)
 
 ###  II. Routines for Elliptic Problems
