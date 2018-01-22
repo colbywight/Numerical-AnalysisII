@@ -6,6 +6,7 @@
  2. [Double Machine Epsilon](https://github.com/colbywight/Numerical-Analysis/blob/master/MachineEpsilonDouble.md)
  3. [Relative Error](/relError.md)
  4. [Absolute Error](/absError.md)
+ 5. [logistic Differential Equation Template](logisticEqn.md)
 
 ###  II. Routines for Elliptic Problems
 
