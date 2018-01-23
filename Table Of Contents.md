@@ -7,6 +7,7 @@
  3. [Relative Error](/relError.md)
  4. [Absolute Error](/absError.md)
  5. [Logistic Differential Equation Template](/logisticDifEq.md)
+ 6. [Spring Mass Equation](/SpringMass.md)
 
 ###  II. Routines for Elliptic Problems
 
