@@ -9,7 +9,7 @@
  5. [Logistic Differential Equation Template](/logisticDifEq.md)
  6. [Spring Mass Equation](/SpringMass.md)
  7. [Finite Difference approximation](/FiniteDifferenceApproximation.md)
- 8. [Thomas Algorithm]
+ 8. [Thomas Algorithm](/ThomasAlgorithm.md)
 
 ###  II. Routines for Elliptic Problems
 1. [Elliptic Equation initilaizer](/EllipticeInitializer.md)
