@@ -10,6 +10,7 @@
  6. [Spring Mass Equation](/SpringMass.md)
  7. [Finite Difference approximation](/FiniteDifferenceApproximation.md)
  8. [Thomas Algorithm](/ThomasAlgorithm.md)
+ 9. [LU Factorization](/https://github.com/colbywight/Numerical-Analysis/blob/master/LUfactorizationSPP.md)
 
 ###  II. Routines for Elliptic Problems
 1. [Elliptic Equation initilaizer](/EllipticeInitializer.md)
