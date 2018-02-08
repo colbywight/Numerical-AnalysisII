@@ -29,6 +29,7 @@
     printVect(test.lower);
     printVect(test.b);
 ```
+The struct was also included for refereence.
 
 Output from the lines above:
 ```C++
@@ -65,4 +66,4 @@ Output from the lines above:
     }
 ```
 
-**Last Modified:** January/2018
+**Last Modified:** Febuary/2018
