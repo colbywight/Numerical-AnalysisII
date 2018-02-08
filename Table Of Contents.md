@@ -11,6 +11,7 @@
  7. [Finite Difference approximation](/FiniteDifferenceApproximation.md)
  8. [Thomas Algorithm](/ThomasAlgorithm.md)
  9. [LU Factorization](https://github.com/colbywight/Numerical-Analysis/blob/master/LUfactorizationSPP.md)
+ 10. [Jacobi Iteration](https://github.com/colbywight/Numerical-Analysis/blob/master/jacobiIteration.md)
 
 ###  II. Routines for Elliptic Problems
 1. [Elliptic Equation initilaizer](/EllipticeInitializer.md)
