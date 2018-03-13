@@ -1,12 +1,14 @@
-# Math 4610 Fundamentals of Computational Mathematics Software Manual Entry
+# Software Manual Entry
 
-**Routine Name:**  jacobiIter
+**Routine Name:**  inversePowerMethod
 
 **Author:** Colby Wight
 
 **Language:** C++
 
-**Description/Purpose:**  The purpose of this routine is to the appoximate solution the the eigenvalue problem Av = (lambda)v. This method will calculate the dominant eigenvalue and eigenvector of a matrix. We will assume that the matrix has a full set of eigenvalues for this routine. 
+**Description/Purpose:**  As a final use of the power method, apply the inverse power method to the matrix that arises in
+the finite difference method. Use the results to compute an estimate of the condition number of the matrix.
+Determine how the condition number varies as the size of the matrix increases.
 
 **Input:** The required inputs for this routine are A, v0, tol and maxIter. Where we have A as a nxn (square) matrix. v0 is the vector guess. As usuall we will use tol and maxIter to break out of a loop when either out desired tolerance level is met or the maximum allowable interations has been tried.
 
@@ -14,30 +16,39 @@
 
 **Usage/Example:**
 
-This routine was first tested simply for verifiaction purposes on a 3x3 matrix. The matrix was tested on a 1,000x1,000 matrix.
+This routine was tested using the second order FDM scheme on a 5x5 matrix, the results for this are below, including a discussion on how the size of the matirx affects the smallest eigenvalue. The code used to create the FDM matrix is also provided. 
 
 ```C++
-     Matrix a( (3), vector<double>(3));
-    a[0][0]=-2;
-    a[0][1]=-4;
-    a[0][2]=2;
-    a[1][0]=-2;
-    a[1][1]=1;
-    a[1][2]=2;
-    a[2][0]=4;
-    a[2][1]=2;
-    a[2][2]=5;
-    Vect v = {1, 2, 3};
-    lambdaVector result = powerMethod(a, v, .01, 100);
+     Matrix secondOrderMatrix(int n){
+     Matrix A(n, Vect(n));
+     for (int i = 0; i < n; i++){
+        for ( int j = 0; j < n; j++) {
+            if(i-1 == j || i+1 == j ) {A[i][j] = 1;}
+            else if(i == j) { A[i][j] = -2;}
+            else A[i][j] = 0;
+        }
+     }
+     return A;
+     }
 
-    cout << result.Lambda;
+     int main() {
+      Matrix F5 = secondOrderMatrix(5);
+      Vect v05 = makeV0(5);
+      cout << "Inverse Power Method Result for Second order FDM 5x5 matirx: ";
+      InversePowerMethod(F5, v05, .001, 500 );
+     
+     return 0;
+     }
+
 ```
 
 Output from the lines above:
 
 ```C++
-     9.6097
+     Inverse Power Method Result for Second order FDM 5x5 matirx:
+     1.47323
 ```
+Results: Above we have the resulting smallest eignenvalue as given by the power method. This same process was run on matricies of increasing size, if we compare them to the condition number using the smalles and largest eigen values we see that the condition number increases for larger matricies as well.
 
 **Implementation/Code:** The code is as follows:
 ```C++
@@ -74,6 +85,7 @@ lambdaVector powerMethod(Matrix A, Vect v0, double tol, int maxIter){
 Vect matVectMult(Matrix matA, int rowA, int colA, Vect vectB) {
 
     Vect resultVect(rowA);
+    # pragma omp parallel for
     for (int i = 0; i < rowA; i++) {
         resultVect[i] = 0;
         for (int j = 0; j < colA; j++) {
@@ -98,4 +110,4 @@ Vect scalarVect(double a, Vect b) {
     return b;
 }
 ```
-**Last Modified:** October/2017
+**Last Modified:** March/2018
