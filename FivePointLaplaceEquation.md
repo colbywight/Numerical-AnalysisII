@@ -1,101 +1,95 @@
 # Math 4610 Fundamentals of Computational Mathematics Software Manual Entry
 
-**Routine Name:**  jacobiIter
+**Routine Name:**  fivePointStencilSolver
 
 **Author:** Colby Wight
 
 **Language:** C++
 
-**Description/Purpose:**  The purpose of this routine is to the appoximate solution the the eigenvalue problem Av = (lambda)v. This method will calculate the dominant eigenvalue and eigenvector of a matrix. We will assume that the matrix has a full set of eigenvalues for this routine. 
+**Description/Purpose:**  Homework 3, Problem 5: Write a set routines that provides an approximate solution of the Laplace equation
+∆ u = sin(x y)
+on the unit square in two dimensions. Use homogeneous Dirichlet boundary conditions for this problem. Use the
+5-point stencil as discussed in class. Use the following general algorithm to set up and solve the linear system:
+1. compute the mesh,
+2. initialize the matrix and right hand sides,
+3. solve the linear system using an appropriate LU factorization
 
-**Input:** The required inputs for this routine are A, v0, tol and maxIter. Where we have A as a nxn (square) matrix. v0 is the vector guess. As usuall we will use tol and maxIter to break out of a loop when either out desired tolerance level is met or the maximum allowable interations has been tried.
+**Input:** There are multiple functions involved in solving this routine but they are all called by the function "fivePointStencilSolver" which then calls the other neccseary funtions to compute the mesh and sove the matrix equation. The inputs for this funtion are int n, double a, and double b, n is going to be the the number of divisions on the grid and a and b are the boundary points.  
 
-**Output:** This routine will return a struct which holds both the eigenvalue and the eigenvector.  These are both associated with the greateds eigen value.
+**Output:** The code, after goin through all the funcitons inside, will print the soulution vector.
 
-**Usage/Example:**
+**Usage/Example:** Here are all of the needed functions and an example of the routine run on the unit square with 5 partitions: 
 
-This routine was first tested simply for verifiaction purposes on a 3x3 matrix. The matrix was tested on a 1,000x1,000 matrix.
+
 
 ```C++
-     Matrix a( (3), vector<double>(3));
-    a[0][0]=-2;
-    a[0][1]=-4;
-    a[0][2]=2;
-    a[1][0]=-2;
-    a[1][1]=1;
-    a[1][2]=2;
-    a[2][0]=4;
-    a[2][1]=2;
-    a[2][2]=5;
-    Vect v = {1, 2, 3};
-    lambdaVector result = powerMethod(a, v, .01, 100);
+     struct MeshPoints{
+    double x;
+    double y;
+};
 
-    cout << result.Lambda;
+int main() {
+    fivePointStencilSolver(5, 0, 1);
+    return 0;
+}
+
+Vect initb( MatrixOfPoints A){
+    Vect b;
+    for (int i = 1; i < A.size() -1; i++){
+        for (int j = 1; j < A.size() - 1; j++){
+            b.push_back(sin(A[i][j].x * A[i][j].y));
+        }
+    }
+    return b;
+}
+
+// gives the points of the square grid with given number of divisions and endpoints
+MatrixOfPoints createMeshGrid(int n, double a, double b){
+    MatrixOfPoints A(n, vector <MeshPoints> (n)); // or is it n+1??
+    double h = (b - a) /n;
+    for (int i = 1; i < n; i++){
+        for (int j = 1; j < n; j++){
+            A[i][j].x = (a + j*h);
+            A[i][j].y = (a + j*h);
+        }
+    }
+    return A;
+}
+
+// itnitialize the matrix for the five point schem
+// ie with -4 down the diagonla and 1 on the sub diagonals
+Matrix fivePointMatrixInitializer(int n){
+    Matrix A(n, Vect(n));
+    for (int i = 0; i < n; i++){
+        for ( int j = 0; j < n; j++) {
+            if(i-3 == j || i+3 == j){ A[i][j] = 1;}
+            else if(i-1 == j || i+1 == j ) {A[i][j] = 1;}
+            else if(i == j) { A[i][j] = -4;}
+            else A[i][j] = 0;
+        }
+    }
+    return A;
+}
+
 ```
 
 Output from the lines above:
 
 ```C++
-     9.6097
+     9.6097...
 ```
 
 **Implementation/Code:** The code is as follows:
 ```C++
-lambdaVector powerMethod(Matrix A, Vect v0, double tol, int maxIter){
-    lambdaVector result;
-    int n = v0.size();
-    Vect y(n);
-    Vect x(n);
-    Vect s(n);
-    double lambdaNew;
-    y = matVectMult(A, n, n, v0);
-    double lambdaOld = 0.0;
-    double error = tol * 10;
-    int cnt = 0;
-    double yNorm;
-    while (error > tol && cnt < maxIter) {
-        lambdaNew = 0;
-        yNorm = l2Norm(y);
-        x = scalarVect(1/yNorm, y);
-        s = matVectMult(A, n, n, x);
-        for (int i = 0; i < n; i++) {
-            lambdaNew += x[i] + s[i];
-        }
-        error = abs(lambdaOld - lambdaNew);
-        cnt++;
-        y = s;
-        lambdaOld = lambdaNew;
-    }
-    result.Lambda = lambdaNew;
-    result.x = x;
-    return result;
-
-}
-Vect matVectMult(Matrix matA, int rowA, int colA, Vect vectB) {
-
-    Vect resultVect(rowA);
-    for (int i = 0; i < rowA; i++) {
-        resultVect[i] = 0;
-        for (int j = 0; j < colA; j++) {
-            resultVect[i] = resultVect[i] + matA[i][j] * vectB[j];
-        }
-    }
-    return resultVect;
-}
-
-double l2Norm(Vect vector1) {
-    int sum = 0;
-    for (int i = 0; i < vector1.size(); i++) {
-        sum+= abs(pow(vector1[i], 2))
-        }
-    return sqrt(sum);
-}
-
-Vect scalarVect(double a, Vect b) {
-    for (int i = 0; i < b.size(); i++){
-        b[i] = a * b[i];
-    }
-    return b;
-}
-```
-**Last Modified:** October/2017
+void fivePointStencilSolver(int n, double a, double b){
+    // create mesh points
+    auto Mesh = createMeshGrid(n, a, b);
+    // Initialize the matrix
+    Matrix A = fivePointMatrixInitializer(n);
+    // Initialize b vector
+    Vect vb = initb(Mesh);
+    // compute the solution of the system with previous code
+    Vect x = luFactor(A, vb);
+    printVect(x);
+}```
+**Last Modified:** March/2018
