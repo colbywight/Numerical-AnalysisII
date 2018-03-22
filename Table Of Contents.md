@@ -15,6 +15,10 @@
  11. [Matrix One Norm](/MatrixOneNorm.md)
  12. [Matrix Two Norm](/MatrixInfinityNorm.md)
  13. [Power Method](https://github.com/colbywight/Numerical-Analysis/blob/master/powerMethod.md)
+ 
+ Linear System Solvers
+ 14. [Gauss-Seidel](https://github.com/colbywight/Numerical-Analysis/blob/master/Gauss-SeidelIteration.md)
+ 15. [Conjugate Gradient](https://github.com/colbywight/Numerical-Analysis/blob/master/conjugateGradient.md)
 
 ###  II. Routines for Elliptic Problems
 1. [Elliptic Equation initilaizer](/EllipticeInitializer.md)
