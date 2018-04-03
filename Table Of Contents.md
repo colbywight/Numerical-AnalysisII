@@ -15,6 +15,7 @@
  11. [Matrix One Norm](/MatrixOneNorm.md)
  12. [Matrix Two Norm](/MatrixInfinityNorm.md)
  13. [Power Method](https://github.com/colbywight/Numerical-Analysis/blob/master/powerMethod.md)
+ 14.[First Order IVP Analytic Solution](./FirstOrderIVPAnalytic.md)
  
  Linear System Solvers
  14. [Gauss-Seidel](https://github.com/colbywight/Numerical-Analysis/blob/master/Gauss-SeidelIteration.md)
