@@ -17,14 +17,14 @@
 
 ```C++
    int main() {
-   explicitEuler(0, -1, .4, .1, .0001, 500);
+   implicitEuler(0, -1, .4, .1, .0001, 500);
    
     cout << " value for lambda = 1: ";
-    explicitEuler(0, 1, 1, .001, .001, 1000, 1);
+    implicitEuler(0, 1, 1, .001, .001, 1000, 1);
     cout << " value for lambda = -1: ";
-    explicitEuler(0, 1, 1, .001, .001, 1000, -1);
+    implicitEuler(0, 1, 1, .001, .001, 1000, -1);
     cout << " value for lambda = 100: ";
-    explicitEuler(0, 1, 1, .001, .001, 1000, 100);
+    implicitEuler(0, 1, 1, .001, .001, 1000, 100);
 
    return 0;
    }
@@ -41,11 +41,12 @@ Output from the lines above:
 **Implementation/Code:** The following is the code:
 
 ```C++
-     void explicitEuler(double x0, double y0, double x, double h, double tol, double maxIter ){
+     void implicitEuler(double x0, double y0, double x, double h, double tol, double maxIter ){
 
     double y =0;
     int cnt = 0;
     while(fabs(x - x0) > tol && cnt < maxIter){
+    // need to use current y value still
         y = y0 + (h * dydx1(x0, y0));
                 y0 = y;
         x0 = x0 + h;
