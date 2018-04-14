@@ -22,7 +22,7 @@
 Sample Output:
 
 ```C++
-      -8
+      -8.542
 ```
 
 **Implementation/Code:** The code is as follows:
@@ -30,7 +30,7 @@ Sample Output:
     // logistic differential equation solution with paramters
     double logDEq(double p0, double a, double b ){
 
-    return (1 - b) * p0 - a;
+    return P0 * exp(x*(a*x-b));
     }
 ```
-**Last Modified:** January/2018
+**Last Modified:** April/2018
