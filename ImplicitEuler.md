@@ -7,7 +7,7 @@
 
 **Language:** C++
 
-**Description/Purpose:** This is a routine for sovling a ordinary differential equation with initial values. This is a first order Runge-Kutta method. For this method we do ne reuqire a linear sovler. It is very simple to code. h is the width of our interval. This rouitne is similar to the Explicit Euler excepth that we us
+**Description/Purpose:** This is a routine for sovling a ordinary differential equation with initial values. This is a first order Runge-Kutta method. For this method we do ne reuqire a linear sovler. It is very simple to code. h is the width of our interval. This rouitne is similar to the Explicit Euler excepth that we use the current y value. We used a secant method routine inside the function. 
 
 **Input:** We have two inputs for the initial condition x0 and y0, then we also take in the parameter x where we want to evaluate it at. Then we used two inputs tol and maxIter to break us out of the loop. For homewokr 6 we added another parmeter to run our routine for different values lambda for the fucntion. 
 
@@ -17,14 +17,13 @@
 
 ```C++
    int main() {
-   implicitEuler(0, -1, .4, .1, .0001, 500);
-   
+   implicitEuler(0, -1, .4, .1, "f1", "df1", .0001, 500);
     cout << " value for lambda = 1: ";
-    implicitEuler(0, 1, 1, .001, .001, 1000, 1);
+    implicitEuler(0, 1, 1, .001, .001, "f1", "df1", 1000, 1);
     cout << " value for lambda = -1: ";
-    implicitEuler(0, 1, 1, .001, .001, 1000, -1);
+    implicitEuler(0, 1, 1, .001, .001, "f1", "df1", 1000, -1);
     cout << " value for lambda = 100: ";
-    implicitEuler(0, 1, 1, .001, .001, 1000, 100);
+    implicitEuler(0, 1, 1, .001, .001, "f1", "df1", 1000, 100);
 
    return 0;
    }
@@ -41,17 +40,17 @@ Output from the lines above:
 **Implementation/Code:** The following is the code:
 
 ```C++
-     void implicitEuler(double x0, double y0, double x, double h, double tol, double maxIter ){
+ 
 
-    double y =0;
-    int cnt = 0;
-    while(fabs(x - x0) > tol && cnt < maxIter){
-    // need to use current y value still
-        y = y0 + (h * dydx1(x0, y0));
-                y0 = y;
-        x0 = x0 + h;
+void implicitEuler(double x0, double y0, double x, double deltat, string f, string df, double tol, int maxIter){
+    int n=0;
+    while (fabs(x - x0) > tol && n < maxIter){
+        x0 = x0 + deltat;
+        double y1a = newtsMeth(y0, f, df, tol, maxIter);
+        y0 = y0 + deltat * func2(x0, y1a, f);
+        n++;
     }
-    cout << "Approximation of the Solution at the given value: " << y << endl;
+    cout << "Approximation of the Solution at the given value: " << y0 << endl;
 }
 ```
 
