@@ -1,7 +1,7 @@
 # Solution to Differential Equations Software Manual Entry
 
 
-**Routine Name:**      implicitEuler
+**Routine Name:**      rungeKutta()
 
 **Author:** Colby Wight
 
@@ -17,14 +17,14 @@
 
 ```C++
    int main() {
-   explicitEuler(0, -1, .4, .1, .0001, 500);
+   rungeKutta2(0, -1, .4, .1, .0001, 500);
    
     cout << " value for lambda = 1: ";
-    explicitEuler(0, 1, 1, .001, .001, 1000, 1);
+    rungeKutta2(0, 1, 1, .001, .001, 1000, 1);
     cout << " value for lambda = -1: ";
-    explicitEuler(0, 1, 1, .001, .001, 1000, -1);
+    rungeKutta2(0, 1, 1, .001, .001, 1000, -1);
     cout << " value for lambda = 100: ";
-    explicitEuler(0, 1, 1, .001, .001, 1000, 100);
+    rungeKutta2(0, 1, 1, .001, .001, 1000, 100);
 
    return 0;
    }
@@ -41,16 +41,19 @@ Output from the lines above:
 **Implementation/Code:** The following is the code:
 
 ```C++
-     void explicitEuler(double x0, double y0, double x, double h, double tol, double maxIter ){
+    double rungeKutta2(double x0, double y0, double x, double h, string f, double lambda){
+    int n = (x-x0)/h;
 
-    double y =0;
-    int cnt = 0;
-    while(fabs(x - x0) > tol && cnt < maxIter){
-        y = y0 + (h * dydx1(x0, y0));
-                y0 = y;
+    double k1, k2;
+    float y = y0;
+    for (int i=0; i<n; i++){
+        k1 = h*functions(x0, y, f, lambda);
+        k2 = h*functions(x0+h/2, y+k1/2, f, lambda );
+        
         x0 = x0 + h;
+        y += k2;
     }
-    cout << "Approximation of the Solution at the given value: " << y << endl;
+    return y;
 }
 ```
 
