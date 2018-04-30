@@ -26,7 +26,11 @@
 
 
 ###  III. Routines for Parabolic Problems
-
+1. [Explict Euler](./ExplicitEuler.md)
+2. [Implicit Euler](./ImplicitEuler.md)
+3. [Runge Kutta 2](./RungeKutta.md)
+4. [Runge Kutta 4] (./RungeKutta.md)
+5. [Predictor Corrector] (./AdamsBashforth.md)
  
 ###  IV. Routines for Hyperbolic Problems
 1. [Upwinding](./Upwinding.md)
