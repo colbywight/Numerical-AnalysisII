@@ -6,8 +6,7 @@
  2. [Double Machine Epsilon](https://github.com/colbywight/Numerical-Analysis/blob/master/MachineEpsilonDouble.md)
  3. [Relative Error](/relError.md)
  4. [Absolute Error](/absError.md)
- 
- 
+
  7. [Finite Difference approximation](/FiniteDifferenceApproximation.md)
  8. [Thomas Algorithm](/ThomasAlgorithm.md)
  9. [LU Factorization](https://github.com/colbywight/Numerical-Analysis/blob/master/LUfactorizationSPP.md)
@@ -15,9 +14,9 @@
  11. [Matrix One Norm](/MatrixOneNorm.md)
  12. [Matrix Two Norm](/MatrixInfinityNorm.md)
  13. [Power Method](https://github.com/colbywight/Numerical-Analysis/blob/master/powerMethod.md)
- 14.[First Order IVP Analytic Solution](./FirstOrderIVPAnalytic.md)
+ 14. [First Order IVP Analytic Solution](./FirstOrderIVPAnalytic.md)
  
- Linear System Solvers
+ ##Linear System Solvers
  14. [Gauss-Seidel](https://github.com/colbywight/Numerical-Analysis/blob/master/Gauss-SeidelIteration.md)
  15. [Conjugate Gradient](https://github.com/colbywight/Numerical-Analysis/blob/master/conjugateGradient.md)
 
