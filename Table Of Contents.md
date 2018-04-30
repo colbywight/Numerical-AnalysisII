@@ -30,8 +30,8 @@
  
 ###  IV. Routines for Hyperbolic Problems
 1. [Upwinding](./Upwinding.md)
-2. [Lax-Wendorff Method] (./LW-Method.md)
-3 [Warming and Beam Method](./WarmingandBeam.md)
+2. [Lax-Wendorff Method](./LW-Method.md)
+3. [Warming and Beam Method](./WarmingandBeam.md)
 
 ###  V. Test Problems
 1. [Heat Equation](./BisectionMethod.md) 
