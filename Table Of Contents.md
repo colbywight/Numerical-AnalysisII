@@ -22,6 +22,9 @@
 
 ###  II. Routines for Elliptic Problems
 1. [Elliptic Equation initilaizer](/EllipticeInitializer.md)
+2. [Five Point Laplace Equation](./FivePointLaplaceEquation.md)
+3. [Nine Point Laplace Equation](./NinePointLaplaceEquation.md)
+4. 
 
 
 ###  III. Routines for Parabolic Problems
