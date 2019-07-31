@@ -1,4 +1,4 @@
-## Numerical Solotion of Differentail Equation Class
+## Numerical Solution of Differentail Equation Class
 ## Table of Contents
 
 ###  I. Basic Routines
